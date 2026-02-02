@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PurpleNotes - Professional Note Taking</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <script type="module" src="main.js"></script>
+
+
+    <!-- AUTH SECTION -->
+    <div id="auth-container">
+        <div class="auth-visual">
+                <img src="https://i.pinimg.com/1200x/4c/69/98/4c6998846d0e7340cf1c71efe098f41c.jpg"
+                    alt="icon" id="auth-image" class="auth-image">
+        </div>
+
+        <div class="auth-form-container">
+            <div class="auth-content">
+                <div class="app-brand-auth">
+                    <i class="ph ph-notebook"></i> PurpleNotes
+                </div>
+
+                <form id="login-form">
+                    <h2 class="auth-heading">Welcome back</h2>
+                    <p class="auth-subtext">Please enter your details to sign in.</p>
+
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="login-email" placeholder="student@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+
+                    <div class="auth-switch">
+                        Don't have an account? <span id="show-signup">Sign up</span>
+                    </div>
+                </form>
+
+                <form id="signup-form" class="hidden">
+                    <h2 class="auth-heading">Create account</h2>
+                    <p class="auth-subtext">Start organizing your study notes today.</p>
+
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="signup-email" placeholder="student@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="signup-confirm" placeholder="Confirm password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+
+                    <div class="auth-switch">
+                        Already have an account? <span id="show-login">Log in</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard-container" class="hidden">
+
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-brand">
+                    <i class="ph ph-notebook" style="font-size: 1.5rem;"></i>
+                    PurpleNotes
+                </div>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="ph ph-sign-out"></i> Log out
+                </button>
+
+            </div>
+
+            <div id="notes-list" class="notes-list">
+                <!-- Note Cards injected here via JS -->
+            </div>
+
+
+            <div class="theme-container" style="padding: 20px; border-top: 1px solid var(--border-color);">
+                <div class="theme-dropdown">
+                    <button id="theme-btn" class="btn btn-text"
+                        style="width: 100%; justify-content: flex-start; gap: 10px; display: flex;">
+                        <i class="ph ph-paint-brush-broad"></i> Change Theme
+                    </button>
+
+                    <div id="theme-menu" class="theme-menu hidden">
+                        <div class="theme-option" data-theme="default">Default (Bright)</div>
+                        <div class="theme-option" data-theme="bright">Bright (High Contrast)</div>
+                        <div class="theme-option" data-theme="dark">Dark (Soft Purple)</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Editor Area -->
+        <main class="editor-container">
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state">
+                <i class="ph ph-files"></i>
+                <h2>Select a note to view</h2>
+                <p>Or create a new one to get started</p>
+            </div>
+
+            <!-- Active Editor -->
+            <div id="editor-wrapper" class="hidden">
+                <div class="save-bar">
+                    <button class="btn btn-primary" id="save-note-btn">Save & Exit</button>
+                </div>
+
+                <div class="editor-header">
+                    <input type="text" id="note-title-input" placeholder="Untitled Note">
+                    <div class="divider"></div>
+                </div>
+                <textarea id="note-content-input" placeholder="Start writing..."></textarea>
+            </div>
+
+            <!-- Floating Action Button -->
+            <button class="fab" id="new-note-btn" title="Create New Note">
+                <i class="ph ph-pencil-simple-line"></i>
+            </button>
+        </main>
+    </div>
+
+
+</body>
+
+</html>

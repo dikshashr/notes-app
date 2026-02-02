@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../JavaScript30"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "notes-app"
+	}
+}
