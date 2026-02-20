@@ -566,9 +566,6 @@ body {
     z-index: 2; 
 }
 
-
-
-/* Style the Markdown headers to match your Cyan theme */
 #note-preview h1, #note-preview h2, #note-preview h3 {
     color: #00bcd4; 
     margin-top: 20px;
@@ -581,25 +578,25 @@ body {
 }
 
 
-/* Container for the side-by-side view */
+
 .split-editor {
     display: flex;
-    flex: 1; /* Takes up remaining vertical space */
+    flex: 1; 
     gap: 20px; 
     height: 100%;
-    overflow: hidden; /* Prevents the whole page from scrolling */
+    overflow: hidden; 
     margin-top: 10px;
 }
 
-/* Styles applied to BOTH the editor and preview */
+
 #note-content-input, 
 #note-preview {
-    flex: 1; /* Both take exactly 50% of the width */
+    flex: 1; 
     height: 100%;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    overflow-y: auto; /* Independent scrolling */
+    overflow-y: auto;
     font-size: 1.05rem;
     line-height: 1.6;
 }
@@ -607,7 +604,7 @@ body {
 #note-content-input {
     background-color: var(--bg-input);
     color: var(--text-main);
-    resize: none; /* Prevents manual resizing that breaks layout */
+    resize: none; 
     outline: none;
 }
 
@@ -621,12 +618,10 @@ body {
     color: var(--text-main);
 }
 
-/* When in view mode, hide the markdown input */
 .split-editor.view-only #note-content-input {
     display: none;
 }
 
-/* When in view mode, make the preview look cleaner (no borders) */
 .split-editor.view-only #note-preview {
     border: none;
     background-color: transparent;

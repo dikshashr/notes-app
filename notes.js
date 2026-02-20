@@ -100,14 +100,13 @@ export function saveNote() {
             title,
             content
         });
-        setActiveNoteId(newId); // Keep the newly created note active
+        setActiveNoteId(newId);
     }
 
     setNotesState(updatedNotes);
     saveNotes(currentUser.email, updatedNotes);
     renderNotes();
 
-    // After saving, switch to View Mode
     DOM.notePreview.innerHTML = marked.parse(content);
     DOM.splitEditor.classList.add('view-only');
     DOM.editNoteBtn.classList.remove('hidden');

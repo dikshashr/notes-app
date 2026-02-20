@@ -25,17 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     DOM.newNoteBtn = document.getElementById('new-note-btn');
     DOM.saveBtn = document.getElementById('save-note-btn');
     DOM.logoutBtn = document.getElementById('logout-btn');
-    // Map new DOM elements
-    DOM.editNoteBtn = document.getElementById('edit-note-btn');
-    DOM.splitEditor = document.getElementById('split-editor-container');
-
-    // Live typing for the split preview
-    DOM.contentInput.addEventListener('input', () => {
-        const rawText = DOM.contentInput.value;
-        DOM.notePreview.innerHTML = marked.parse(rawText);
-    });
-
-    // What happens when user clicks "Edit"
+    
     DOM.editNoteBtn.addEventListener('click', () => {
         DOM.splitEditor.classList.remove('view-only'); // Shows the split screen
         DOM.editNoteBtn.classList.add('hidden');       // Hide Edit button
@@ -49,15 +39,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         DOM.notePreview.innerHTML = marked.parse(rawText);
     });
 
+    // Map new DOM elements
+    DOM.editNoteBtn = document.getElementById('edit-note-btn');
+    DOM.splitEditor = document.getElementById('split-editor-container');
+
+    // Live typing for the split preview
+    DOM.contentInput.addEventListener('input', () => {
+        const rawText = DOM.contentInput.value;
+        DOM.notePreview.innerHTML = marked.parse(rawText);
+    });
 
     initAuth();
 
-    // Check if user is already logged in (from previous session)
     const user = getCurrentUser();
 
     if (user) {
         setCurrentUserState(user);
-        // FETCH NOTES FROM SERVER (Async)
+        // FETCH NOTES FROM SERVER
         const notes = await getNotes(user.email);
         setNotesState(notes);
 
@@ -81,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. Toggle Menu
     if (themeBtn) {
         themeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Click bubble rokne ke liye
+            e.stopPropagation(); 
             themeMenu.classList.toggle('hidden');
         });
     }
@@ -111,7 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             DOM.contentInput.classList.add('hidden'); // Hide textarea
             DOM.notePreview.classList.remove('hidden'); // Show preview
-            DOM.notePreview.style.display = 'block'; // Force show if class doesn't work
+            DOM.notePreview.style.display = 'block'; 
 
             DOM.editBtn.classList.remove('active');
             DOM.previewBtn.classList.add('active');

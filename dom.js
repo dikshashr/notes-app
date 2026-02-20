@@ -23,7 +23,7 @@ export const DOM = {
     saveBtn: null,
     newNoteBtn: null,
 
-    // Toggle Buttons (New)
+    // Toggle Buttons
     editBtn: null,
     previewBtn: null,
 
