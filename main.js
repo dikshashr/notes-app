@@ -27,23 +27,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     DOM.logoutBtn = document.getElementById('logout-btn');
     
     DOM.editNoteBtn.addEventListener('click', () => {
-        DOM.splitEditor.classList.remove('view-only'); // Shows the split screen
-        DOM.editNoteBtn.classList.add('hidden');       // Hide Edit button
-        DOM.saveBtn.classList.remove('hidden');        // Show Save button
-        DOM.titleInput.readOnly = false;               // Allow title editing
+        DOM.splitEditor.classList.remove('view-only'); 
+        DOM.editNoteBtn.classList.add('hidden');       
+        DOM.saveBtn.classList.remove('hidden');        
+        DOM.titleInput.readOnly = false;               
     });
 
-    // Live Markdown Preview
     DOM.contentInput.addEventListener('input', () => {
         const rawText = DOM.contentInput.value;
         DOM.notePreview.innerHTML = marked.parse(rawText);
     });
 
-    // Map new DOM elements
     DOM.editNoteBtn = document.getElementById('edit-note-btn');
     DOM.splitEditor = document.getElementById('split-editor-container');
 
-    // Live typing for the split preview
     DOM.contentInput.addEventListener('input', () => {
         const rawText = DOM.contentInput.value;
         DOM.notePreview.innerHTML = marked.parse(rawText);
@@ -89,13 +86,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         option.addEventListener('click', () => {
             const selectedTheme = option.getAttribute('data-theme');
 
-            // Apply Theme
             document.body.setAttribute('data-theme', selectedTheme);
 
-            // Save to LocalStorage
             localStorage.setItem('pn_theme', selectedTheme);
 
-            // Close menu
             themeMenu.classList.add('hidden');
         });
     });
@@ -105,10 +99,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Switch to PREVIEW
         DOM.previewBtn.addEventListener('click', () => {
             const rawText = DOM.contentInput.value;
-            DOM.notePreview.innerHTML = marked.parse(rawText); // Convert text
+            DOM.notePreview.innerHTML = marked.parse(rawText); 
             
-            DOM.contentInput.classList.add('hidden'); // Hide textarea
-            DOM.notePreview.classList.remove('hidden'); // Show preview
+            DOM.contentInput.classList.add('hidden'); 
+            DOM.notePreview.classList.remove('hidden'); 
             DOM.notePreview.style.display = 'block'; 
 
             DOM.editBtn.classList.remove('active');
@@ -117,10 +111,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Switch to EDIT
         DOM.editBtn.addEventListener('click', () => {
-            DOM.notePreview.classList.add('hidden'); // Hide preview
+            DOM.notePreview.classList.add('hidden'); 
             DOM.notePreview.style.display ='none'; 
             
-            DOM.contentInput.classList.remove('hidden'); // Show textarea
+            DOM.contentInput.classList.remove('hidden'); 
             
             DOM.previewBtn.classList.remove('active');
             DOM.editBtn.classList.add('active');
