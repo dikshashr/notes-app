@@ -59,7 +59,7 @@ app.post('/api/login', async (req, res) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email, password });
         if (!user) {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(400).json({ message: "User doesn't exist" });
         }
         res.json({ user });
     } catch (err) {

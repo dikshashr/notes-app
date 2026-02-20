@@ -88,6 +88,7 @@ body {
 
 .btn {
     padding: 10px 20px;
+    margin: 0.3rem;
     border-radius: 8px;
     border: none;
     cursor: pointer;
@@ -443,18 +444,6 @@ body {
     margin-bottom: 25px;
 }
 
-#note-content-input {
-    flex: 1;
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--text-main);
-    background: transparent;
-    resize: none;
-    overflow-y: auto;
-}
 
 .fab {
     position: absolute;
@@ -575,4 +564,71 @@ body {
     border-radius: 25%; 
     box-shadow: 0 10px 30px rgba(124, 77, 255, 0.4); 
     z-index: 2; 
+}
+
+
+
+/* Style the Markdown headers to match your Cyan theme */
+#note-preview h1, #note-preview h2, #note-preview h3 {
+    color: #00bcd4; 
+    margin-top: 20px;
+}
+
+#note-preview code {
+    background: #f4f4f4;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+
+/* Container for the side-by-side view */
+.split-editor {
+    display: flex;
+    flex: 1; /* Takes up remaining vertical space */
+    gap: 20px; 
+    height: 100%;
+    overflow: hidden; /* Prevents the whole page from scrolling */
+    margin-top: 10px;
+}
+
+/* Styles applied to BOTH the editor and preview */
+#note-content-input, 
+#note-preview {
+    flex: 1; /* Both take exactly 50% of the width */
+    height: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow-y: auto; /* Independent scrolling */
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+#note-content-input {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    resize: none; /* Prevents manual resizing that breaks layout */
+    outline: none;
+}
+
+#note-content-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+#note-preview {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+}
+
+/* When in view mode, hide the markdown input */
+.split-editor.view-only #note-content-input {
+    display: none;
+}
+
+/* When in view mode, make the preview look cleaner (no borders) */
+.split-editor.view-only #note-preview {
+    border: none;
+    background-color: transparent;
+    padding: 10px 0;
 }

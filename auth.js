@@ -17,7 +17,7 @@ export function initAuth() {
         const user = await loginUser(email, password);
 
         if (!user) {
-            alert('Invalid credentials');
+            alert("User doesn't exist");
             return;
         }
 
@@ -56,7 +56,7 @@ export function initAuth() {
             DOM.signupForm.classList.add('hidden');
             DOM.loginForm.classList.remove('hidden');
         } else {
-            alert('User already exists or server error');
+            alert('User already exists!');
         }
     });
 

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <title>PurpleNotes - Professional Note Taking</title>
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -19,14 +20,14 @@
 
     <!-- AUTH SECTION -->
     <div id="auth-container">
-                
+
 
         <div class="auth-form-container">
-            <img src="https://i.pinimg.com/1200x/4c/69/98/4c6998846d0e7340cf1c71efe098f41c.jpg"
-                    alt="icon" id="auth-image" class="auth-image">
-                    <div class="app-brand-auth">
-                    <i class="ph ph-notebook" style="padding: 0.7rem; text-align: center;"></i> Purple Notes
-                </div>
+            <img src="https://i.pinimg.com/1200x/4c/69/98/4c6998846d0e7340cf1c71efe098f41c.jpg" alt="icon"
+                id="auth-image" class="auth-image">
+            <div class="app-brand-auth">
+                <i class="ph ph-notebook" style="padding: 0.7rem; text-align: center;"></i> Purple Notes
+            </div>
             <div class="auth-content">
                 <form id="login-form">
                     <h2 class="auth-heading">Welcome back</h2>
@@ -115,27 +116,30 @@
         <!-- Right Editor Area -->
         <main class="editor-container">
 
-            <!-- Empty State -->
             <div id="empty-state" class="empty-state">
                 <i class="ph ph-files"></i>
                 <h2>Select a note to view</h2>
                 <p>Or create a new one to get started</p>
             </div>
 
-            <!-- Active Editor -->
             <div id="editor-wrapper" class="hidden">
-                <div class="save-bar">
-                    <button class="btn btn-primary" id="save-note-btn">Save & Exit</button>
+                <div class="editor-toolbar">
+                    <div class="save-bar" style="display: flex; gap: 10px;">
+                        <button class="btn btn-secondary" id="edit-note-btn">Edit</button>
+                        <button class="btn btn-primary" id="save-note-btn">Save Note</button>
+                    </div>
                 </div>
 
                 <div class="editor-header">
                     <input type="text" id="note-title-input" placeholder="Untitled Note">
-                    <div class="divider"></div>
                 </div>
-                <textarea id="note-content-input" placeholder="Start writing..."></textarea>
+
+                <div id="split-editor-container" class="split-editor">
+                    <textarea id="note-content-input" placeholder="Start writing Markdown..."></textarea>
+                    <div id="note-preview"></div>
+                </div>
             </div>
 
-            <!-- Floating Action Button -->
             <button class="fab" id="new-note-btn" title="Create New Note">
                 <i class="ph ph-pencil-simple-line"></i>
             </button>

@@ -4,7 +4,7 @@ import { currentUser, notes, activeNoteId, setNotesState, setActiveNoteId } from
 
 function formatNoteDate(dateString) {
     if (!dateString) return '';
-    
+
     const date = new Date(dateString);
     const now = new Date();
     const diffInMs = now - date;
@@ -13,7 +13,7 @@ function formatNoteDate(dateString) {
 
     if (diffInHours < 24) {
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    } 
+    }
     else {
         return date.toLocaleDateString();
     }
@@ -31,7 +31,7 @@ export function renderNotes() {
         const div = document.createElement('div');
         div.className = 'note-card';
 
-        
+
         const displayDate = formatNoteDate(note.createdAt);
 
         div.innerHTML = `
@@ -43,16 +43,23 @@ export function renderNotes() {
         `;
 
         div.onclick = () => {
-            setActiveNoteId(note.id); 
+            setActiveNoteId(note.id);
             DOM.titleInput.value = note.title;
             DOM.contentInput.value = note.content;
+            DOM.notePreview.innerHTML = marked.parse(note.content || '');
+
+            // Force View Mode
+            DOM.splitEditor.classList.add('view-only');
+            DOM.editNoteBtn.classList.remove('hidden');
+            DOM.saveBtn.classList.add('hidden');
+            DOM.titleInput.readOnly = true;
+
             DOM.editorWrapper.classList.remove('hidden');
             DOM.emptyState.classList.add('hidden');
         };
-
         div.querySelector('.delete-btn').onclick = e => {
             e.stopPropagation();
-            deleteNote(note.id); 
+            deleteNote(note.id);
         };
 
         DOM.notesList.appendChild(div);
@@ -63,8 +70,14 @@ export function createNewNote() {
     setActiveNoteId(null);
     DOM.titleInput.value = '';
     DOM.contentInput.value = '';
-    const quillElement = document.querySelector('.ql-editor');
-    if(quillElement) quillElement.innerHTML = '';
+    DOM.notePreview.innerHTML = '';
+
+    // Force Edit Mode
+    DOM.splitEditor.classList.remove('view-only');
+    DOM.editNoteBtn.classList.add('hidden');
+    DOM.saveBtn.classList.remove('hidden');
+    DOM.titleInput.readOnly = false;
+
     DOM.editorWrapper.classList.remove('hidden');
     DOM.emptyState.classList.add('hidden');
 }
@@ -81,19 +94,25 @@ export function saveNote() {
         note.title = title;
         note.content = content;
     } else {
+        const newId = 'note_' + Date.now();
         updatedNotes.unshift({
-            id: 'note_' + Date.now(),
+            id: newId,
             title,
             content
         });
+        setActiveNoteId(newId); // Keep the newly created note active
     }
 
     setNotesState(updatedNotes);
     saveNotes(currentUser.email, updatedNotes);
     renderNotes();
 
-    DOM.editorWrapper.classList.add('hidden');
-    DOM.emptyState.classList.remove('hidden');
+    // After saving, switch to View Mode
+    DOM.notePreview.innerHTML = marked.parse(content);
+    DOM.splitEditor.classList.add('view-only');
+    DOM.editNoteBtn.classList.remove('hidden');
+    DOM.saveBtn.classList.add('hidden');
+    DOM.titleInput.readOnly = true;
 }
 
 export function deleteNote(id) {
